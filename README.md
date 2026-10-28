@@ -7,6 +7,8 @@ Workshop code for the talk *Practical AI Inference: From API to Serverless*.
 | [api/](api) | Call a hosted model, GLM-5.3, through a Runpod Public Endpoint. No GPUs to manage. |
 | [serverless/](serverless) | Deploy your own model, OpenJev, as a Runpod Serverless endpoint with one agent prompt. |
 
+**Prefer a notebook?** [workshop.ipynb](workshop.ipynb) has the same concepts and code in one place. Open it in Jupyter, or upload it to [Google Colab](https://colab.research.google.com/). It's optional: everything below works from the terminal too.
+
 ## Key concepts
 
 **Inference** is using a trained model to produce an output: you send it an input (a prompt, a review, an image) and it returns a result (an answer, a score, a picture). Training builds the model; inference is everything you do with it afterward, and it's what you pay for each time your app calls a model.
