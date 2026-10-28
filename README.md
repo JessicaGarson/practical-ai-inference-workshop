@@ -7,6 +7,25 @@ Workshop code for the talk *Practical AI Inference: From API to Serverless*.
 | [api/](api) | Call a hosted model, GLM-5.3, through a Runpod Public Endpoint. No GPUs to manage. |
 | [serverless/](serverless) | Deploy your own model, OpenJev, as a Runpod Serverless endpoint with one agent prompt. |
 
+## Key concepts
+
+**Inference** is using a trained model to produce an output: you send it an input (a prompt, a review, an image) and it returns a result (an answer, a score, a picture). Training builds the model; inference is everything you do with it afterward, and it's what you pay for each time your app calls a model.
+
+Runpod gives you three ways to run inference, from least to most control:
+
+| | Public Endpoint | Serverless | Pod |
+| --- | --- | --- | --- |
+| **What it is** | A model Runpod already hosts. You call it with your API key. | Your own container on autoscaling GPU workers behind a URL. Workers run only while there's work. | A GPU or CPU machine you rent and manage directly: start, stop, SSH in, expose ports. |
+| **You deploy** | Nothing | A container image and endpoint settings | A container image |
+| **You pay** | Per output (for example, per million tokens) | Per second while a worker runs, including cold starts | Per hour while the pod runs, plus storage while stopped |
+| **Good for** | Trying popular models fast | Your own or custom models with bursty traffic | Development, experiments, and always-on apps |
+| **In this workshop** | Part 1: GLM-5.3 | Part 2: OpenJev | Hollow Manor's web server |
+
+A Serverless endpoint comes in two types, and you choose when you create it:
+
+- **Queue**: requests become jobs. You send them to `/run` or `/runsync` and check `/status`, and jobs wait in a queue when workers are busy. Public Endpoints use this same job API, which is why `api/glm.sh` polls `/status`.
+- **Load balancer**: requests go straight to the worker's own HTTP server, like `/v1/systemone` in Part 2. There's no queue, so requests are dropped when every worker is busy.
+
 ## Setup
 
 Create a [Runpod API key](https://docs.runpod.io/get-started/credentials) and store it in your environment:
@@ -100,6 +119,28 @@ The script prints the sentiment (positive, mixed, or negative), whether the revi
 ### Clean up
 
 When you're done, ask your agent to delete the `openjev` endpoint. With 0 active workers, an idle endpoint costs nothing, but deleting it keeps your account tidy.
+
+## Resources
+
+**Blog posts**
+
+- [Getting started with GLM-5.3 with Runpod's public endpoint](https://www.runpod.io/blog/getting-started-glm-5-3-runpod-public-endpoint)
+- [How to Deploy OpenJev on Runpod Serverless](https://www.runpod.io/blog/how-to-deploy-openjev-on-runpod-serverless)
+
+**Code**
+
+- [Runpod MCP server](https://github.com/runpod/runpod-mcp): lets an AI agent create and manage Runpod resources
+- [runpod/openjev-serverless](https://github.com/runpod/openjev-serverless): companion repository for the OpenJev post
+- [Murder at Hollow Manor](https://github.com/JessicaGarson/hollow-manor-mystery): the demo game
+
+**Docs**
+
+- [Public Endpoints](https://docs.runpod.io/public-endpoints/overview)
+- [Serverless load balancing](https://docs.runpod.io/serverless/load-balancing/overview)
+- [Serverless endpoint settings](https://docs.runpod.io/serverless/endpoints/endpoint-configurations)
+- [Serverless pricing](https://docs.runpod.io/serverless/pricing)
+- [Managing Pods](https://docs.runpod.io/pods/manage-pods)
+- [API keys](https://docs.runpod.io/get-started/credentials)
 
 ## Credits and licenses
 
