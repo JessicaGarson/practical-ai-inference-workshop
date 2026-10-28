@@ -76,7 +76,13 @@ The same base URL, `https://api.runpod.ai/v2/b1dd8hy2hqo1nb/openai/v1`, works wi
 
 ### 1. Connect the Runpod MCP server
 
-Connect your agent (for example, Claude Code) to the [Runpod MCP server](https://github.com/runpod/runpod-mcp).
+Connect your agent (for example, Claude Code) to the [Runpod MCP server](https://github.com/runpod/runpod-mcp). If this is your first time, follow [MCP-SETUP.md](MCP-SETUP.md). For Claude Code, it's one command plus a browser sign-in:
+
+```bash
+claude mcp add --transport http runpod -s user https://mcp.runpod.io/
+```
+
+Then run `/mcp` in Claude Code, sign in, and check that `runpod` shows **Connected**.
 
 ### 2. Deploy with the prompt
 
