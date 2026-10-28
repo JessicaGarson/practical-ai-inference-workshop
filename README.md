@@ -6,6 +6,7 @@ Workshop code for the talk *Practical AI Inference: From API to Serverless*.
 | --- | --- |
 | [api/](api) | Call a hosted model, GLM-5.3, through a Runpod Public Endpoint. No GPUs to manage. |
 | [serverless/](serverless) | Deploy your own model, OpenJev, as a Runpod Serverless endpoint with one agent prompt. |
+| [slides/](slides/practical-ai-inference.pdf) | The talk's slides (PDF). |
 
 **Prefer a notebook?** [workshop.ipynb](workshop.ipynb) has the same concepts and code in one place. Open it in Jupyter, or upload it to [Google Colab](https://colab.research.google.com/). It's optional: everything below works from the terminal too.
 
