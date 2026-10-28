@@ -113,7 +113,7 @@ bash serverless/test.sh
 **With Python.** This asks three typed questions about one headphone review in a single request:
 
 ```bash
-python serverless/review.py
+python serverless/openjev_python.py
 ```
 
 The script prints the sentiment (positive, mixed, or negative), whether the reviewer would recommend the product, and a likely star rating.
